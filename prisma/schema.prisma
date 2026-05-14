@@ -10,17 +10,54 @@ datasource db {
 // Example models
 
 model User {
-  id    Int     @id @default(autoincrement())
-  email String  @unique
-  name  String?
-  posts Post[]
+  id        String   @id @default(cuid())
+  clerkUserId String   @unique
+  name      String?
+  email     String   @unique
+  createdAt DateTime @default(now())
+  memberships OrganizationMember[]
+  documents Document[]
+  @@map("users")
 }
 
-model Post {
-  id        Int     @id @default(autoincrement())
-  title     String
-  content   String?
-  published Boolean @default(false)
-  author    User    @relation(fields: [authorId], references: [id])
-  authorId  Int
+model Organization {
+  id        String   @id @default(cuid())
+  clerkOrgId String   @unique
+  name      String?
+  slug     String   @unique
+  createdAt DateTime @default(now())
+  members  OrganizationMember[]
+  documents Document[]
+  @@map("organizations")
+}
+
+model OrganizationMember {
+  id              String            @id @default(cuid())
+  role            String            @default("member")
+  organizationId  String            @unique
+  userId          String            
+  user            User              @relation(fields:[userId], references:[id])
+  organization    Organization      @relation(fields:[organizationId], references:[id])
+
+  @@unique([organizationId, userId])
+  @@map("organization_memberfdsaf")
+}
+
+model Document {
+  id              String            @id @default(cuid())
+  name            String
+  content         String?
+  fileURL         String?
+  fileSize        Int?
+  fileType        String?
+  aiSummary       String?
+  aiKeywords      String[]
+  sentiment       String?
+  organizationId  String            @unique
+  userId          String            
+  user            User              @relation(fields:[userId], references:[id])
+  organization    Organization      @relation(fields:[organizationId], references:[id])
+  createdAt       DateTime          @default(now())  
+  @@unique([organizationId, userId])
+  @@map("organization_memberfdsaf")
 }
