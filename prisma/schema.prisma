@@ -1,5 +1,5 @@
 generator client {
-  provider = "prisma-client"
+  provider = "prisma-client-js"
   output   = "../generated/prisma"
 }
 datasource db {
@@ -34,13 +34,13 @@ model Organization {
 model OrganizationMember {
   id              String            @id @default(cuid())
   role            String            @default("member")
-  organizationId  String            @unique
+  organizationId  String
   userId          String            
   user            User              @relation(fields:[userId], references:[id])
   organization    Organization      @relation(fields:[organizationId], references:[id])
 
   @@unique([organizationId, userId])
-  @@map("organization_memberfdsaf")
+  @@map("organization_members")
 }
 
 model Document {
@@ -53,11 +53,11 @@ model Document {
   aiSummary       String?
   aiKeywords      String[]
   sentiment       String?
-  organizationId  String            @unique
-  userId          String            
+  organizationId  String
+  userId          String   
+  testing         Boolean           @default(false)         
   user            User              @relation(fields:[userId], references:[id])
   organization    Organization      @relation(fields:[organizationId], references:[id])
-  createdAt       DateTime          @default(now())  
-  @@unique([organizationId, userId])
-  @@map("organization_memberfdsaf")
+  createdAt       DateTime          @default(now())
+  @@map("documents")
 }
