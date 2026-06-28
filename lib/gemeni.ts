@@ -10,7 +10,7 @@ const genAI = new GoogleGenerativeAI(apiKey); // client helper for interacting w
 
 export async function analayzeWithGemini(
     text: string,
-    analysisType: "summary" | "qa" | "sentiment" | "entities " | "extract"
+    analysisType: "summary" | "qa" | "sentiment" | "entities" | "extract"
 ) {
     try {
         const model = genAI.getGenerativeModel({ model: "gemini-3-flash-preview" });
