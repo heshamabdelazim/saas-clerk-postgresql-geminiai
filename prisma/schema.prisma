@@ -47,7 +47,7 @@ model Document {
   id              String            @id @default(cuid())
   name            String
   content         String?
-  fileURL         String?
+  fileUrl         String?
   fileSize        Int?
   fileType        String?
   aiSummary       String?
