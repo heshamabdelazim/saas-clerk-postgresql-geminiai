@@ -147,7 +147,7 @@ exports.Prisma.DocumentScalarFieldEnum = {
   id: 'id',
   name: 'name',
   content: 'content',
-  fileURL: 'fileURL',
+  fileUrl: 'fileUrl',
   fileSize: 'fileSize',
   fileType: 'fileType',
   aiSummary: 'aiSummary',

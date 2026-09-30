@@ -4506,7 +4506,7 @@ export namespace Prisma {
     id: string | null
     name: string | null
     content: string | null
-    fileURL: string | null
+    fileUrl: string | null
     fileSize: number | null
     fileType: string | null
     aiSummary: string | null
@@ -4521,7 +4521,7 @@ export namespace Prisma {
     id: string | null
     name: string | null
     content: string | null
-    fileURL: string | null
+    fileUrl: string | null
     fileSize: number | null
     fileType: string | null
     aiSummary: string | null
@@ -4536,7 +4536,7 @@ export namespace Prisma {
     id: number
     name: number
     content: number
-    fileURL: number
+    fileUrl: number
     fileSize: number
     fileType: number
     aiSummary: number
@@ -4562,7 +4562,7 @@ export namespace Prisma {
     id?: true
     name?: true
     content?: true
-    fileURL?: true
+    fileUrl?: true
     fileSize?: true
     fileType?: true
     aiSummary?: true
@@ -4577,7 +4577,7 @@ export namespace Prisma {
     id?: true
     name?: true
     content?: true
-    fileURL?: true
+    fileUrl?: true
     fileSize?: true
     fileType?: true
     aiSummary?: true
@@ -4592,7 +4592,7 @@ export namespace Prisma {
     id?: true
     name?: true
     content?: true
-    fileURL?: true
+    fileUrl?: true
     fileSize?: true
     fileType?: true
     aiSummary?: true
@@ -4695,7 +4695,7 @@ export namespace Prisma {
     id: string
     name: string
     content: string | null
-    fileURL: string | null
+    fileUrl: string | null
     fileSize: number | null
     fileType: string | null
     aiSummary: string | null
@@ -4730,7 +4730,7 @@ export namespace Prisma {
     id?: boolean
     name?: boolean
     content?: boolean
-    fileURL?: boolean
+    fileUrl?: boolean
     fileSize?: boolean
     fileType?: boolean
     aiSummary?: boolean
@@ -4748,7 +4748,7 @@ export namespace Prisma {
     id?: boolean
     name?: boolean
     content?: boolean
-    fileURL?: boolean
+    fileUrl?: boolean
     fileSize?: boolean
     fileType?: boolean
     aiSummary?: boolean
@@ -4766,7 +4766,7 @@ export namespace Prisma {
     id?: boolean
     name?: boolean
     content?: boolean
-    fileURL?: boolean
+    fileUrl?: boolean
     fileSize?: boolean
     fileType?: boolean
     aiSummary?: boolean
@@ -4784,7 +4784,7 @@ export namespace Prisma {
     id?: boolean
     name?: boolean
     content?: boolean
-    fileURL?: boolean
+    fileUrl?: boolean
     fileSize?: boolean
     fileType?: boolean
     aiSummary?: boolean
@@ -4796,7 +4796,7 @@ export namespace Prisma {
     createdAt?: boolean
   }
 
-  export type DocumentOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "content" | "fileURL" | "fileSize" | "fileType" | "aiSummary" | "aiKeywords" | "sentiment" | "organizationId" | "userId" | "testing" | "createdAt", ExtArgs["result"]["document"]>
+  export type DocumentOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "content" | "fileUrl" | "fileSize" | "fileType" | "aiSummary" | "aiKeywords" | "sentiment" | "organizationId" | "userId" | "testing" | "createdAt", ExtArgs["result"]["document"]>
   export type DocumentInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     user?: boolean | UserDefaultArgs<ExtArgs>
     organization?: boolean | OrganizationDefaultArgs<ExtArgs>
@@ -4820,7 +4820,7 @@ export namespace Prisma {
       id: string
       name: string
       content: string | null
-      fileURL: string | null
+      fileUrl: string | null
       fileSize: number | null
       fileType: string | null
       aiSummary: string | null
@@ -5258,7 +5258,7 @@ export namespace Prisma {
     readonly id: FieldRef<"Document", 'String'>
     readonly name: FieldRef<"Document", 'String'>
     readonly content: FieldRef<"Document", 'String'>
-    readonly fileURL: FieldRef<"Document", 'String'>
+    readonly fileUrl: FieldRef<"Document", 'String'>
     readonly fileSize: FieldRef<"Document", 'Int'>
     readonly fileType: FieldRef<"Document", 'String'>
     readonly aiSummary: FieldRef<"Document", 'String'>
@@ -5737,7 +5737,7 @@ export namespace Prisma {
     id: 'id',
     name: 'name',
     content: 'content',
-    fileURL: 'fileURL',
+    fileUrl: 'fileUrl',
     fileSize: 'fileSize',
     fileType: 'fileType',
     aiSummary: 'aiSummary',
@@ -6024,7 +6024,7 @@ export namespace Prisma {
     id?: StringFilter<"Document"> | string
     name?: StringFilter<"Document"> | string
     content?: StringNullableFilter<"Document"> | string | null
-    fileURL?: StringNullableFilter<"Document"> | string | null
+    fileUrl?: StringNullableFilter<"Document"> | string | null
     fileSize?: IntNullableFilter<"Document"> | number | null
     fileType?: StringNullableFilter<"Document"> | string | null
     aiSummary?: StringNullableFilter<"Document"> | string | null
@@ -6042,7 +6042,7 @@ export namespace Prisma {
     id?: SortOrder
     name?: SortOrder
     content?: SortOrderInput | SortOrder
-    fileURL?: SortOrderInput | SortOrder
+    fileUrl?: SortOrderInput | SortOrder
     fileSize?: SortOrderInput | SortOrder
     fileType?: SortOrderInput | SortOrder
     aiSummary?: SortOrderInput | SortOrder
@@ -6063,7 +6063,7 @@ export namespace Prisma {
     NOT?: DocumentWhereInput | DocumentWhereInput[]
     name?: StringFilter<"Document"> | string
     content?: StringNullableFilter<"Document"> | string | null
-    fileURL?: StringNullableFilter<"Document"> | string | null
+    fileUrl?: StringNullableFilter<"Document"> | string | null
     fileSize?: IntNullableFilter<"Document"> | number | null
     fileType?: StringNullableFilter<"Document"> | string | null
     aiSummary?: StringNullableFilter<"Document"> | string | null
@@ -6081,7 +6081,7 @@ export namespace Prisma {
     id?: SortOrder
     name?: SortOrder
     content?: SortOrderInput | SortOrder
-    fileURL?: SortOrderInput | SortOrder
+    fileUrl?: SortOrderInput | SortOrder
     fileSize?: SortOrderInput | SortOrder
     fileType?: SortOrderInput | SortOrder
     aiSummary?: SortOrderInput | SortOrder
@@ -6105,7 +6105,7 @@ export namespace Prisma {
     id?: StringWithAggregatesFilter<"Document"> | string
     name?: StringWithAggregatesFilter<"Document"> | string
     content?: StringNullableWithAggregatesFilter<"Document"> | string | null
-    fileURL?: StringNullableWithAggregatesFilter<"Document"> | string | null
+    fileUrl?: StringNullableWithAggregatesFilter<"Document"> | string | null
     fileSize?: IntNullableWithAggregatesFilter<"Document"> | number | null
     fileType?: StringNullableWithAggregatesFilter<"Document"> | string | null
     aiSummary?: StringNullableWithAggregatesFilter<"Document"> | string | null
@@ -6296,7 +6296,7 @@ export namespace Prisma {
     id?: string
     name: string
     content?: string | null
-    fileURL?: string | null
+    fileUrl?: string | null
     fileSize?: number | null
     fileType?: string | null
     aiSummary?: string | null
@@ -6312,7 +6312,7 @@ export namespace Prisma {
     id?: string
     name: string
     content?: string | null
-    fileURL?: string | null
+    fileUrl?: string | null
     fileSize?: number | null
     fileType?: string | null
     aiSummary?: string | null
@@ -6328,7 +6328,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     content?: NullableStringFieldUpdateOperationsInput | string | null
-    fileURL?: NullableStringFieldUpdateOperationsInput | string | null
+    fileUrl?: NullableStringFieldUpdateOperationsInput | string | null
     fileSize?: NullableIntFieldUpdateOperationsInput | number | null
     fileType?: NullableStringFieldUpdateOperationsInput | string | null
     aiSummary?: NullableStringFieldUpdateOperationsInput | string | null
@@ -6344,7 +6344,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     content?: NullableStringFieldUpdateOperationsInput | string | null
-    fileURL?: NullableStringFieldUpdateOperationsInput | string | null
+    fileUrl?: NullableStringFieldUpdateOperationsInput | string | null
     fileSize?: NullableIntFieldUpdateOperationsInput | number | null
     fileType?: NullableStringFieldUpdateOperationsInput | string | null
     aiSummary?: NullableStringFieldUpdateOperationsInput | string | null
@@ -6360,7 +6360,7 @@ export namespace Prisma {
     id?: string
     name: string
     content?: string | null
-    fileURL?: string | null
+    fileUrl?: string | null
     fileSize?: number | null
     fileType?: string | null
     aiSummary?: string | null
@@ -6376,7 +6376,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     content?: NullableStringFieldUpdateOperationsInput | string | null
-    fileURL?: NullableStringFieldUpdateOperationsInput | string | null
+    fileUrl?: NullableStringFieldUpdateOperationsInput | string | null
     fileSize?: NullableIntFieldUpdateOperationsInput | number | null
     fileType?: NullableStringFieldUpdateOperationsInput | string | null
     aiSummary?: NullableStringFieldUpdateOperationsInput | string | null
@@ -6390,7 +6390,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     content?: NullableStringFieldUpdateOperationsInput | string | null
-    fileURL?: NullableStringFieldUpdateOperationsInput | string | null
+    fileUrl?: NullableStringFieldUpdateOperationsInput | string | null
     fileSize?: NullableIntFieldUpdateOperationsInput | number | null
     fileType?: NullableStringFieldUpdateOperationsInput | string | null
     aiSummary?: NullableStringFieldUpdateOperationsInput | string | null
@@ -6630,7 +6630,7 @@ export namespace Prisma {
     id?: SortOrder
     name?: SortOrder
     content?: SortOrder
-    fileURL?: SortOrder
+    fileUrl?: SortOrder
     fileSize?: SortOrder
     fileType?: SortOrder
     aiSummary?: SortOrder
@@ -6650,7 +6650,7 @@ export namespace Prisma {
     id?: SortOrder
     name?: SortOrder
     content?: SortOrder
-    fileURL?: SortOrder
+    fileUrl?: SortOrder
     fileSize?: SortOrder
     fileType?: SortOrder
     aiSummary?: SortOrder
@@ -6665,7 +6665,7 @@ export namespace Prisma {
     id?: SortOrder
     name?: SortOrder
     content?: SortOrder
-    fileURL?: SortOrder
+    fileUrl?: SortOrder
     fileSize?: SortOrder
     fileType?: SortOrder
     aiSummary?: SortOrder
@@ -7136,7 +7136,7 @@ export namespace Prisma {
     id?: string
     name: string
     content?: string | null
-    fileURL?: string | null
+    fileUrl?: string | null
     fileSize?: number | null
     fileType?: string | null
     aiSummary?: string | null
@@ -7151,7 +7151,7 @@ export namespace Prisma {
     id?: string
     name: string
     content?: string | null
-    fileURL?: string | null
+    fileUrl?: string | null
     fileSize?: number | null
     fileType?: string | null
     aiSummary?: string | null
@@ -7221,7 +7221,7 @@ export namespace Prisma {
     id?: StringFilter<"Document"> | string
     name?: StringFilter<"Document"> | string
     content?: StringNullableFilter<"Document"> | string | null
-    fileURL?: StringNullableFilter<"Document"> | string | null
+    fileUrl?: StringNullableFilter<"Document"> | string | null
     fileSize?: IntNullableFilter<"Document"> | number | null
     fileType?: StringNullableFilter<"Document"> | string | null
     aiSummary?: StringNullableFilter<"Document"> | string | null
@@ -7259,7 +7259,7 @@ export namespace Prisma {
     id?: string
     name: string
     content?: string | null
-    fileURL?: string | null
+    fileUrl?: string | null
     fileSize?: number | null
     fileType?: string | null
     aiSummary?: string | null
@@ -7274,7 +7274,7 @@ export namespace Prisma {
     id?: string
     name: string
     content?: string | null
-    fileURL?: string | null
+    fileUrl?: string | null
     fileSize?: number | null
     fileType?: string | null
     aiSummary?: string | null
@@ -7545,7 +7545,7 @@ export namespace Prisma {
     id?: string
     name: string
     content?: string | null
-    fileURL?: string | null
+    fileUrl?: string | null
     fileSize?: number | null
     fileType?: string | null
     aiSummary?: string | null
@@ -7578,7 +7578,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     content?: NullableStringFieldUpdateOperationsInput | string | null
-    fileURL?: NullableStringFieldUpdateOperationsInput | string | null
+    fileUrl?: NullableStringFieldUpdateOperationsInput | string | null
     fileSize?: NullableIntFieldUpdateOperationsInput | number | null
     fileType?: NullableStringFieldUpdateOperationsInput | string | null
     aiSummary?: NullableStringFieldUpdateOperationsInput | string | null
@@ -7593,7 +7593,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     content?: NullableStringFieldUpdateOperationsInput | string | null
-    fileURL?: NullableStringFieldUpdateOperationsInput | string | null
+    fileUrl?: NullableStringFieldUpdateOperationsInput | string | null
     fileSize?: NullableIntFieldUpdateOperationsInput | number | null
     fileType?: NullableStringFieldUpdateOperationsInput | string | null
     aiSummary?: NullableStringFieldUpdateOperationsInput | string | null
@@ -7608,7 +7608,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     content?: NullableStringFieldUpdateOperationsInput | string | null
-    fileURL?: NullableStringFieldUpdateOperationsInput | string | null
+    fileUrl?: NullableStringFieldUpdateOperationsInput | string | null
     fileSize?: NullableIntFieldUpdateOperationsInput | number | null
     fileType?: NullableStringFieldUpdateOperationsInput | string | null
     aiSummary?: NullableStringFieldUpdateOperationsInput | string | null
@@ -7629,7 +7629,7 @@ export namespace Prisma {
     id?: string
     name: string
     content?: string | null
-    fileURL?: string | null
+    fileUrl?: string | null
     fileSize?: number | null
     fileType?: string | null
     aiSummary?: string | null
@@ -7662,7 +7662,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     content?: NullableStringFieldUpdateOperationsInput | string | null
-    fileURL?: NullableStringFieldUpdateOperationsInput | string | null
+    fileUrl?: NullableStringFieldUpdateOperationsInput | string | null
     fileSize?: NullableIntFieldUpdateOperationsInput | number | null
     fileType?: NullableStringFieldUpdateOperationsInput | string | null
     aiSummary?: NullableStringFieldUpdateOperationsInput | string | null
@@ -7677,7 +7677,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     content?: NullableStringFieldUpdateOperationsInput | string | null
-    fileURL?: NullableStringFieldUpdateOperationsInput | string | null
+    fileUrl?: NullableStringFieldUpdateOperationsInput | string | null
     fileSize?: NullableIntFieldUpdateOperationsInput | number | null
     fileType?: NullableStringFieldUpdateOperationsInput | string | null
     aiSummary?: NullableStringFieldUpdateOperationsInput | string | null
@@ -7692,7 +7692,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     content?: NullableStringFieldUpdateOperationsInput | string | null
-    fileURL?: NullableStringFieldUpdateOperationsInput | string | null
+    fileUrl?: NullableStringFieldUpdateOperationsInput | string | null
     fileSize?: NullableIntFieldUpdateOperationsInput | number | null
     fileType?: NullableStringFieldUpdateOperationsInput | string | null
     aiSummary?: NullableStringFieldUpdateOperationsInput | string | null

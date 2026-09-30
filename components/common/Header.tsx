@@ -1,20 +1,31 @@
 "use client"
-import { Brain, Home, LogIn, UserPlus, Users } from 'lucide-react'
+import { Brain, Building, FileText, Home, LogIn, UserPlus, Users } from 'lucide-react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { Button } from '../ui/button';
-import { Show, SignIn, SignInButton, SignUpButton, UserButton } from '@clerk/react';
+import { Show, SignIn, SignInButton, SignUpButton, useOrganization, UserButton, useUser } from '@clerk/react';
 import Logo from './Logo';
 
 function Header() {
   const pathName = usePathname();
+  const { user } = useUser();
+  const { organization } = useOrganization();
+
   console.log(pathName, " pathname")
-  const items = [
-    { href: "/", label: "Home", icon: <Home className='w-4 h-4' /> },
-    { href: "/switch-org", label: "Switch Organization", icon: <Users className='w-4 h-4' /> }
-  ]
 
   const NavLinks = () => {
+    let items = [
+      { href: "/", label: "Home", icon: <Home className='w-4 h-4' /> },
+      { href: "/switch-org", label: "Switch Organization", icon: <Users className='w-4 h-4' /> }
+    ]
+    if (organization) {
+      items = [
+        ...items,
+        { href: `/${organization.slug}`, label: "Organization Dashboard", icon: <Building className='w-4 h-4' /> },
+        { href: `/${organization.slug}/documents`, label: "Documents", icon: <FileText className='w-4 h-4' /> }
+      ]
+    }
+
     return items.map((item) => {
       const isActive = pathName === item.href || (item.href !== "/" && pathName?.startsWith(item.href))
       return (
@@ -52,6 +63,9 @@ function Header() {
           </Show>
           <Show when="signed-in">
             <div className='md:flex items-center gap-2'>
+              <span className='text-sm text-gray-600'>
+                {organization ? `In ${organization.name}` : (user?.username || user?.firstName)}
+              </span>
               <UserButton />
             </div>
           </Show>

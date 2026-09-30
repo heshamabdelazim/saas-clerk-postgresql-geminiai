@@ -11,7 +11,7 @@ export async function syncUserToDatabase() {
         }
         const email = clerkUser.emailAddresses[0]?.emailAddress || "";
         const name = `${clerkUser.firstName || ""} ${clerkUser.lastName || ""}`.trim();
-
+        console.log("clerkUser: ", clerkUser)
         // Check if user exists in db
         let dbUser = await prisma.user.findUnique({ where: { clerkUserId: clerkUser.id } })
         if (dbUser) {
@@ -20,7 +20,7 @@ export async function syncUserToDatabase() {
         } else {
             // creating new user
             dbUser = await prisma.user.create({ data: { clerkUserId: clerkUser.id, email, name: name || "user" } })
-            console.log("New user created");
+            console.log("New user created", dbUser);
         }
         return dbUser;
     } catch (error) {
