@@ -46,9 +46,7 @@ export async function POST(request: Request) {
                 role: "owner"
             }
         })
-
         return NextResponse.json({ success: true, organization, message: "Organization created successfully" }, { status: 200, });
-
     } catch (err: any) {
         // return error response
         console.error("Post organization", err)

@@ -29,3 +29,21 @@ export const steps = [
     "Upload documents",
     "Get AI analysis instantly"
 ];
+
+export const formatFileSize = (bytes?: number) => {
+    if (!bytes) return "N/A"
+
+    // Scalable O(1) =>just push to the array "BB" 
+    const sizes = ["B", "KB", "MB", "GB", "TB"]
+    const i = Math.floor(Math.log(bytes) / Math.log(1024));
+    return `${(bytes / Math.pow(1024, i)).toFixed(2)} ${sizes[i]}`;
+
+    /*
+     Just Readable O(1)
+     if(bytes<1024) return `${bytes} bytes`
+     if(bytes<1024^2) return `${bytes/1024} KB`
+     if(bytes<1024^3) return `${bytes/1024/1024} MB`
+     if(bytes<1024^4) return `${bytes/1024/1024/1024} GB`
+     if(bytes<1024^5) return `${bytes/1024/1024/1024/1024} TB`
+     */
+}

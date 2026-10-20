@@ -1,6 +1,7 @@
 "use client";
+import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Button, Input } from '@base-ui/react';
+import { Input } from '@/components/ui/input';
 import { useOrganizationList, useUser } from '@clerk/nextjs';
 import { Organization } from '@clerk/nextjs/server';
 import { ArrowRight, Building, Loader2, Plus } from 'lucide-react';

@@ -1,15 +1,16 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { prisma } from "@/lib/prisma";
 import { auth } from "@clerk/nextjs/server"
+import { Badge } from "@/components/ui/badge";
 import { redirect } from "next/navigation";
 
 interface OrgLayoutProps {
     children: React.ReactNode
-    params: Promise<{ OrgSlug: string }>
+    params: Promise<{ orgSlug: string }>
 }
 export default async function OrgLayout({ children, params }: OrgLayoutProps) {
     const { userId } = await auth();
-    const { OrgSlug } = await params;
+    const { orgSlug } = await params;
 
     if (!userId) {
         redirect("/sign-in")
@@ -17,7 +18,7 @@ export default async function OrgLayout({ children, params }: OrgLayoutProps) {
 
     const organization = await prisma.organization.findUnique({
         where: {
-            slug: OrgSlug
+            slug: orgSlug
         }
     })
 
@@ -46,9 +47,16 @@ export default async function OrgLayout({ children, params }: OrgLayoutProps) {
                             <h1 className="text-2xl font-semibold tracking-tight">{organization.name}</h1>
                             <p className="text-sm text-muted-foreground">Organization workspace</p>
                         </div>
+                        <Badge className="px-4 py-1.5 font-medium">{membership.role}</Badge>
                     </div>
                 </CardContent>
             </Card>
+            {/* Main Content */}
+            <main className="py-8">
+                <div className="container mx-auto px-4">
+                    {children}
+                </div>
+            </main>
         </div>
     )
 }
