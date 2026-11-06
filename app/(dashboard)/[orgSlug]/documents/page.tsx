@@ -2,10 +2,11 @@
 import { formatFileSize } from '@/app/data/data'
 import DocumentCard from '@/components/document/Document-card'
 import DocumentUploadDialog from '@/components/document/document-upload-dialog'
+import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Document } from '@/types'
 import { useOrganization } from '@clerk/nextjs'
-import { FileText, Loader2 } from 'lucide-react'
+import { FileText, Loader2, Upload, UploadCloudIcon } from 'lucide-react'
 import React, { use, Suspense, useState, useEffect } from 'react'
 import { toast } from 'sonner'
 
@@ -44,9 +45,10 @@ export default function DocumentsPage() {
                     <h1>Documents</h1>
                     <p className='text-gray-600'>Upload and analyze documents in {organization?.name}</p>
                 </div>
-            </div>
             {/* // Upload dialog */}
-            <DocumentUploadDialog />
+            <DocumentUploadDialog trigger={<Button><Upload className="h-4 w-4 mr-2"/> Upload Document</Button>}/>
+            </div>
+            
             {/* // stats bar */}
             {documents.length > 0 && !isLoading && (
                 <div className='grid grid-cols-1 md:grid-cols-3 gap-4'>
@@ -60,6 +62,7 @@ export default function DocumentsPage() {
                     </Card>
                     <Card>
                         <CardContent className='pt-6'>
+                            
                             <div className='text-center'>
                                 <div className='text-3xl font-bold text-green-600'>{documents?.filter(doc => doc.aiSummary).length}</div>
                                 <p className='text-sm text-gray-500'>Analyzed</p>

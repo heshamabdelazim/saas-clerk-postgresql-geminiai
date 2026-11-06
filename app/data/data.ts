@@ -30,6 +30,15 @@ export const steps = [
     "Get AI analysis instantly"
 ];
 
+export const allAlloweedTypes: readonly string[] = [
+    "text/plain",
+    "application/pdf",
+    "application/msword",
+    "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+    "text/markdown",
+    "text/x-markdown",
+];
+
 export const formatFileSize = (bytes?: number) => {
     if (!bytes) return "N/A"
 
