@@ -1,4 +1,5 @@
 
+import { formatFileSize } from '@/app/data/data';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
@@ -8,9 +9,9 @@ import { auth } from '@clerk/nextjs/server';
 import { ArrowRight, Brain, Calendar, File, FileText, Upload, User } from 'lucide-react';
 import Link from 'next/link';
 import { redirect } from 'next/navigation';
-// import { useOrganization, useOrganizationList, useUser } from '@clerk/nextjs';
-// import React, { useState } from 'react'
 import { toast } from 'sonner';
+import ReactMarkdown from "react-markdown"
+
 
 interface OrgPageProps {
     params: Promise<{ orgSlug: string }>
@@ -147,17 +148,17 @@ async function OrgPage({ params }: OrgPageProps) {
                                                 <div className='text-gray-600 flex gap-3'>
                                                     <span className='flex gap-0.5 items-center'><User size={14} /> {membership.user.name}</span>
                                                     <span className='flex gap-0.5 items-center'><Calendar size={14} /> {doc.createdAt.toLocaleDateString()} </span>
-                                                    {doc.fileSize && (<span><File size="14" />{doc.fileSize}</span>)}
+                                                    {doc.fileSize && (<span className="flex gap-0.5 items-center"><File size="14" />{formatFileSize(doc.fileSize)}</span>)}
                                                 </div>
                                             </div>
                                         </Link>
                                         {doc.aiSummary && <Card className='ml-10'>
                                             <CardHeader className='flex items-center gap-3.5'>
-                                                <span className='flex items-center gap-1'><Brain size={14} /> AI Analysis</span>
+                                                <span className='flex items-center gap-1'><Brain size={14} className="text-green-300" /> AI Analysis</span>
                                                 <span>Gemini AI</span>
                                             </CardHeader>
                                             <CardContent >
-                                                {doc.aiSummary}
+                                                <ReactMarkdown>{doc.aiSummary}</ReactMarkdown>
                                             </CardContent>
                                         </Card>}
                                     </div>

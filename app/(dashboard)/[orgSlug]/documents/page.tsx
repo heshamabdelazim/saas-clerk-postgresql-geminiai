@@ -1,10 +1,10 @@
 'use client'
-import { formatFileSize } from '@/app/data/data'
+import { analysisTypes, formatFileSize } from '@/app/data/data'
 import DocumentCard from '@/components/document/Document-card'
 import DocumentUploadDialog from '@/components/document/document-upload-dialog'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
-import { Document } from '@/types'
+import { AnalysisType, Document } from '@/types'
 import { useOrganization } from '@clerk/nextjs'
 import { FileText, Loader2, Upload, UploadCloudIcon } from 'lucide-react'
 import React, { use, Suspense, useState, useEffect } from 'react'
@@ -15,6 +15,9 @@ export default function DocumentsPage() {
     const { organization } = useOrganization()
     const [documents, setDocuments] = useState<Document[]>([])
     const [isLoading, setIsLoading] = useState(false);
+    const [isAnalyzing, setIsAnalyzing] = useState<string | null>(null)
+    const [selectedAnalysisType, setSelectedAnalysisType] = useState<AnalysisType>("summary")
+    const [expandedSummaries, setExpandedSummaries] = useState<Set<string>>(new Set())
 
     async function fetchingData() {
         if (!organization) return;
@@ -36,7 +39,61 @@ export default function DocumentsPage() {
     useEffect(() => {
         fetchingData()
     }, [organization])
-    console.log(documents, " myDocs")
+
+    const handleAnalyze = async (documentId: string) => {
+        if(!organization) return;
+        setIsAnalyzing(documentId)
+        try{
+            const response= await fetch("/api/analyze", {
+            method:"POST",
+            headers:{contentType: "application/json"},
+            body: JSON.stringify({documentId: documentId, organizationId:organization?.id, analysisType: selectedAnalysisType})
+        })
+        if(response.ok){
+            const data = await response.json()
+            const analysisTypeLabel= analysisTypes.find((t) => t.value === selectedAnalysisType)?.label;
+            toast.success(`${analysisTypeLabel || "Document"} analyzed successfully. `)
+            fetchingData()
+            setExpandedSummaries(prev => new Set(prev).add(documentId))
+        }else{
+            const error= await response.json();
+            toast.error(error.error || "Failed to analyze document")
+        }
+        }catch(err){
+            console.log("analyze err: ", err)
+            toast.error("something went wrong while analyzing the document")
+        }finally{setIsAnalyzing(null)}
+    }
+    
+    const handleDelete = async (documentId: string) => {
+        if(!confirm("Are you sure you want to delete this document?")) return;
+
+        try{
+            const response = await fetch(`/api/documents/${documentId}`, {
+            method: "DELETE"
+        });
+        if(response.ok){
+            toast.success("Document deleted successfully")
+            fetchingData()    
+        }else{
+            toast.error("Failed to delete document")
+        }
+        } catch(err){
+            console.log("Delete error: ", err)
+            toast.error("Failed to delete document")
+        }
+        
+
+    }
+    const toggleSummary = async (documentId: string) => {
+        const newExpanded= new Set(expandedSummaries);
+        if(newExpanded.has(documentId)){
+            newExpanded.delete(documentId)
+        }
+        newExpanded.add(documentId)
+        setExpandedSummaries(newExpanded)
+    }
+
     return (
         <div className='space-y-8'>
             {/* // Header */}
@@ -46,7 +103,7 @@ export default function DocumentsPage() {
                     <p className='text-gray-600'>Upload and analyze documents in {organization?.name}</p>
                 </div>
             {/* // Upload dialog */}
-            <DocumentUploadDialog trigger={<Button><Upload className="h-4 w-4 mr-2"/> Upload Document</Button>}/>
+            <DocumentUploadDialog trigger={<Button><Upload className="h-4 w-4 mr-2"/> Upload Document</Button>} onUploadSuccess={fetchingData}/>
             </div>
             
             {/* // stats bar */}
@@ -107,7 +164,19 @@ export default function DocumentsPage() {
                                 <p className="text-gray-600">Upload your first document to get started</p>
                             </div>
                         ) : (<div className='space-y-6'>
-                            {documents.map(doc => (<DocumentCard key={doc.id} />))}
+                            {documents.map(doc => (<DocumentCard 
+                                key={doc.id}
+                                document={doc}
+                                isAnalyzing={isAnalyzing===doc.id}
+                                selectedAnalysisType= {selectedAnalysisType}
+                                onAnalsisTypeChange={setSelectedAnalysisType}
+                                onAnalyze={handleAnalyze}
+                                onDelete={handleDelete}
+                                onToggleSummary={toggleSummary}
+                                expandedSummaries={expandedSummaries}
+                                formatFileSize={formatFileSize}
+                             />
+                             ))}
                         </div>)
                     )}
                 </CardContent>

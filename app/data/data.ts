@@ -1,4 +1,6 @@
-import { Brain, Shield, Upload, Users } from "lucide-react";
+import { Brain, FileText, Heart, MessageSquare, Shield, Sparkles, Tags, Upload, Users } from "lucide-react";
+import type { LucideIcon } from "lucide-react";
+import type { AnalysisType } from "@/types";
 
 export const features = [
     {
@@ -28,6 +30,14 @@ export const steps = [
     "Create an organization",
     "Upload documents",
     "Get AI analysis instantly"
+];
+
+export const analysisTypes: { value: AnalysisType; label: string; icon: LucideIcon }[] = [
+    { value: "summary", label: "Summary", icon: FileText },
+    { value: "qa", label: "Q&A", icon: MessageSquare },
+    { value: "sentiment", label: "Sentiment", icon: Heart },
+    { value: "entities", label: "Entities", icon: Tags },
+    { value: "extract", label: "Extract", icon: Sparkles },
 ];
 
 export const allAlloweedTypes: readonly string[] = [

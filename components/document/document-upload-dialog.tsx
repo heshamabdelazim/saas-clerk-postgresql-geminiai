@@ -7,6 +7,7 @@ import { Loader2, Upload, UploadCloudIcon, X } from 'lucide-react'
 import { Button } from '../ui/button'
 import { toast } from 'sonner'
 import { allAlloweedTypes } from '../../app/data/data'
+import { useRouter } from 'next/navigation'
 
 interface uploadDialogProps {
     onUploadSuccess?: () => void,
@@ -20,6 +21,7 @@ function DocumentUploadDialog({ onUploadSuccess, trigger }: uploadDialogProps) {
     const [documentName, setDocumentName] = useState("")
     const [isOpen, setIsOpen] = useState(false)
     const [selectedFile, setSelectedFile] = useState<File | null>(null)
+    const router = useRouter()
 
     const handleCancelBtn = (e: React.MouseEvent<HTMLButtonElement>) => {
         e.stopPropagation(); //to prevent Event Bubbling and not to execute the (label or upload input)
@@ -72,6 +74,7 @@ function DocumentUploadDialog({ onUploadSuccess, trigger }: uploadDialogProps) {
                 setDocumentName("")
                 setSelectedFile(null)
                 setIsOpen(false)
+                onUploadSuccess?.()
             }else{
                 const error = await response.json()
                 console.log(error, "the error")
@@ -81,12 +84,13 @@ function DocumentUploadDialog({ onUploadSuccess, trigger }: uploadDialogProps) {
                 // console.error("Document upload failed:", error)
                 // toast.error(error.error || error.message || "Failed to upload document")
             }
-            console.log(response, "the response")
         }catch(err:any){
             console.error("Upload error: ", err)
             toast.error("Upload error: ", err)
         }finally{
             setIsUploading(false)
+            await new Promise((resolve) => setTimeout(resolve, 500)); // wait for 0.5s before calling onUploadSuccess to ensure the document is available in the database
+            router.refresh()
         }
      }
     const handleDialogOpenChange = (open: boolean) => {

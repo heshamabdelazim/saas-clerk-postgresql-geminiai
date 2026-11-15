@@ -4,8 +4,8 @@ export interface Document {
     content: string
     fileUrl: string,
     fileSize: number,
-    fileType: String,
-    aiSummary: String,
+    fileType: string,
+    aiSummary: string,
     aiKeywords: string[],
     sentiment: string,
     createdAt: number,
@@ -15,17 +15,14 @@ export interface Document {
     }
 }
 
-/**
- *   id              String        
-  name            String
-  content         String?
-  fileUrl         String?
-  fileSize        Int?
-  fileType        String?
-  aiSummary       String?
-  aiKeywords      String[]
-  sentiment       String?
-  organizationId  String
-  userId          String 
- * 
- */
+// export interface AnalysisType {
+//     type: "summary" | "qa" | "sentiment" | "entities" | "extract"
+// }
+
+export type AnalysisType =
+  | "summary"
+  | "qa"
+  | "sentiment"
+  | "entities"
+  | "extract"
+  | null
