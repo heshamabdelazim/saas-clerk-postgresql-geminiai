@@ -3,7 +3,6 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { useOrganizationList, useUser } from '@clerk/nextjs';
-import { Organization } from '@clerk/nextjs/server';
 import { ArrowRight, Building, Loader2, Plus } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import React, { useState } from 'react'
@@ -88,7 +87,7 @@ function SelectOrg() {
 
     const handleSelectOrg = async (org: Organization) => {
         try {
-            if (setActive) {
+            if (setActive) { //checking clerk service availability
                 await setActive({ organization: org.id })
                 router.push(`/${org.slug}`)
             }

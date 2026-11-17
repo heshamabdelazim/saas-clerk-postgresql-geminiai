@@ -40,9 +40,9 @@ export async function DELETE(request: Request, { params }: routeParams) {
         }
 
         //delete file from vercel blob if exists
-        if (document.fileURL) {
+        if (document.fileUrl) {
             try {
-                await deleteFromBlob(document.fileURL);
+                await deleteFromBlob(document.fileUrl);
             } catch (err) {
                 console.log("Failed to delete from blob", err)
             }
