@@ -85,7 +85,7 @@ function SelectOrg() {
         }
     };
 
-    const handleSelectOrg = async (org: Organization) => {
+    const handleSelectOrg = async (org: any) => {
         try {
             if (setActive) { //checking clerk service availability
                 await setActive({ organization: org.id })
