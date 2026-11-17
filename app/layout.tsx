@@ -4,7 +4,6 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import Footer from "@/components/common/Footer";
 import Header from "@/components/common/Header";
-import { syncUserToDatabase } from "@/lib/sync-user";
 import { Toaster } from "sonner";
 
 
@@ -20,7 +19,6 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  await syncUserToDatabase();
   return (
 
     <html

@@ -11,7 +11,6 @@ function Header() {
   const { user } = useUser();
   const { organization } = useOrganization();
 
-  console.log(pathName, " pathname")
 
   const NavLinks = () => {
     let items = [
